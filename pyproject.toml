@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "class-hierarchy-cl"
+version = "0.1.0"
+description = "Probabilistic class hierarchies (Silva-Palacios et al., 2018) in class-incremental learning, built on incremental-feature-cl"
+requires-python = ">=3.10"
+# Pinned to a commit on `main` (merge of PR #3). Bump deliberately and record it in results.
+dependencies = [
+  "incremental-feature-cl @ git+https://github.com/kobros-tech/incremental_feature_cl.git@90f490109d0fa8d00b1fe0e417c6b75d9a768489",
+  "numpy>=1.24",
+  "torch>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "scipy>=1.10"]  # scipy: test-only cross-check of the HAC implementation
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
